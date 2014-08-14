@@ -9,7 +9,7 @@ class LoginModalView
 
   app_logo:->
     properties =
-      src: @app.logo
+      logo: @app.logo
     h "app-logo", properties
 
   app_name:->
@@ -17,15 +17,15 @@ class LoginModalView
 
   username_input:->
     properties =
-      placeholder: "Enter your username ..."
+      "placeholder": "Enter your username ..."
     h "username-input", properties
 
   login_button:->
     properties =
       "evt-click":(evt)->
-        root.emmiter.emit("login-button-click")
+        console.log("hihihhi")
 
-    h "login_button", properties
+    h "login-button", properties
 
   error:->
     return  if @app.login_error? and login_error!="" then h "error", [@app.login_error] else ""

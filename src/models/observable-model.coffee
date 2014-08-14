@@ -8,7 +8,6 @@ class ObservableModel
     f(@)
 
   observable:(listener)=>
-    console.log(@)
 
     if not (listener?)
       return @

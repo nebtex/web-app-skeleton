@@ -12,8 +12,18 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+    sass:
+      dev: # Target
+        options: # Target options
+          style: "expanded"
 
-  grunt.registerTask "build:dev:js", ()->
+        files: # Dictionary of files
+          "public/css/app.css": "assets/sass/app.scss" # 'destination': 'source'
+
+
+  grunt.loadNpmTasks('grunt-contrib-sass');
+
+  grunt.registerTask "build:dev:app:js", ()->
 
     js_dir = path.resolve(__dirname, 'public/js')
 
@@ -34,6 +44,28 @@ module.exports = (grunt) ->
       .pipe(exorcist(path.join(js_dir,'app.js.map')))
       .pipe(write)
 
+  grunt.registerTask "build:dev:assets:js", ()->
+
+    js_dir = path.resolve(__dirname, 'public/js')
+
+    # Tell grunt this task is asynchronous.
+    done = @async()
+    write = concat (data) ->
+      out = path.join js_dir, 'custom_tags.js'
+      grunt.file.write out, data
+      done()
+
+    mkdirp js_dir, (e) ->
+      if e
+        grunt.log.writeln(e)
+      file = path.resolve(__dirname, 'assets/custom_dom/all-tags.coffee');
+      b = browserify([file], {debug: true, extensions:".coffee"})
+      b.transform("coffeeify")
+      .bundle()
+      .pipe(exorcist(path.join(js_dir,'custom_tags.js.map')))
+      .pipe(write)
+
+
   # Default task(s).
-  grunt.registerTask "default", ["build:js:dev"]
+  grunt.registerTask "build:dev:js", ["build:dev:app:js", "build:dev:assets:js"]
   return

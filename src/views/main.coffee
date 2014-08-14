@@ -6,4 +6,4 @@ module.exports = class
 
   @render: (state)->
     login_page = new LoginPage(state)
-    return h "app", [login_page.render()]
+    return h "main-app", [login_page.render()]
