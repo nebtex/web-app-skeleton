@@ -2,35 +2,34 @@
 @import "vendor/bootstrap";
 
 
-html,body, main-app, app-view{
+html,body, .main-app, .app-view{
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
-main-app, app-view{
+.main-app, .app-view{
   display: block;
 }
 
-view-body{
+.app-view > article{
   display: block;
   min-height: 100%;
   height: auto !important;
   height: 100%;
   margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
-  padding-top: 10%;
 }
-clear-fix{
+.clear-fix{
   display: block;
   clear: both;
 }
-login-modal app-name{
+.login-modal  h1.app-name{
 
   @extend h3;
   text-align: center;
   display: block;
   margin-bottom: 30px;
 }
-view-footer{
+.app-view > footer{
   display: block;
   height: 50px; /* .push must be the same height as .footer */
   padding: 15px;
@@ -48,7 +47,7 @@ body{
   background: url("../img/pattern-eip0.png");
 }
 
-login-modal{
+.login-modal{
   display: block;
   background-color: white;
   width: 400px;
@@ -56,35 +55,30 @@ login-modal{
   padding: 20px;
   @extend .bounceInDown;
   @extend .animated;
+  top: 0; left: 0; bottom: 0; right: 0;
+  position: absolute;
+  height: 300px;
+
+  .login_button {
+    @extend .btn;
+    @extend .btn-primary;
+    float: right;
+    margin-top: 10px;
+
+  }
+  footer{
+    margin-top: 30px;
+  }
+  input.username {
+    @extend .form-control;
+  }
+
+  img.app-logo {
+    width: 150px;
+  }
 
 }
 
-login-button {
-  @extend .btn;
-  @extend .btn-primary;
-  float: right;
-  margin-top: 10px;
 
-}
 
-username-input{
 
-}
-
-username-input input{
-  @extend .form-control;
-
-}
-username-input *{
-  color:red;
-
-}
-
-app-logo{
-  display: block;
-  clear: both;
-}
-app-logo img{
-  width: 150px;
-
-}

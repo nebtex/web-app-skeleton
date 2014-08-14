@@ -7,31 +7,33 @@ class LoginModalView
   constructor:(app)->
     @app = app
 
-  app_logo:->
-    properties =
-      logo: @app.logo
-    h "app-logo", properties
+  header:->
+    img_properties =
+      src: @app.logo
+    img = h "img.app-logo", img_properties
+    title = h "h1.app-name", [@app.name]
 
-  app_name:->
-    h "app-name", [@app.name]
+    return h "header", [img, title]
 
-  username_input:->
+  body:->
     properties =
       "placeholder": "Enter your username ..."
-    h "username-input", properties
+    input = h "input.username", properties
+    return h "article", [input, @error()]
 
-  login_button:->
+  footer:->
     properties =
-      "evt-click":(evt)->
+      href:"#"
+      "ev-click": mercury.event (evt)->
         console.log("hihihhi")
 
-    h "login-button", properties
+    h "footer", [h("a.login_button", properties, ["Login"]), h("div.clear-fix")]
 
   error:->
-    return  if @app.login_error? and login_error!="" then h "error", [@app.login_error] else ""
+    return  if @app.login_error? and @app.login_error!="" then h "span.error", [@app.login_error] else ""
 
   render:->
-    h "login-modal", [@app_logo(), @app_name(), @username_input(), @error(), @login_button()]
+    h "section.login-modal", [@header(), @body(), @footer()]
 
 
 module.exports = LoginModalView
