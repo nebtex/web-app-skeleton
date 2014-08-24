@@ -16,8 +16,14 @@ class LoginModalView
     return h "header", [img, title]
 
   body:->
-    properties =
-      "placeholder": "Enter your username ..."
+    if @app.trying_to_login == true
+      properties =
+        value: @app.$current_user.name
+        disabled: "disabled"
+    else
+      properties =
+        placeholder: "Enter your username ..."
+
     input = h "input.username", properties
     return h "article", [input, @error()]
 
@@ -26,8 +32,12 @@ class LoginModalView
       href:"#"
       "ev-click": mercury.event (evt)->
         console.log("hihihhi")
-
-    h "footer", [h("a.login_button", properties, ["Login"]), h("div.clear-fix")]
+    if @app.trying_to_login == true
+      spinner = h "div.spinner", [h("div.rect1"), h("div.rect2"), h("div.rect3"), h("div.rect4"), h("div.rect5")]
+      login_button = h("a.login_button_waiting", properties, [h("div","Login"), spinner])
+    else
+      login_button = h("a.login_button", properties, "Login")
+    h "footer", [login_button, h("div.clear-fix")]
 
   error:->
     return  if @app.login_error? and @app.login_error!="" then h "span.error", [@app.login_error] else ""

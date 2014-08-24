@@ -15,7 +15,6 @@ html,body, .main-app, .app-view{
   display: block;
   min-height: 100%;
   height: auto !important;
-  height: 100%;
   margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
 }
 .clear-fix{
@@ -48,16 +47,19 @@ body{
 }
 
 .login-modal{
+  @extend .bounceInDown;
+  @extend .animated;
   display: block;
   background-color: white;
   width: 400px;
-  margin: auto;
   padding: 20px;
-  @extend .bounceInDown;
-  @extend .animated;
-  top: 0; left: 0; bottom: 0; right: 0;
-  position: absolute;
   height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -200px;
+
 
   .login_button {
     @extend .btn;
@@ -65,7 +67,28 @@ body{
     float: right;
     margin-top: 10px;
 
+
   }
+
+  .login_button_waiting{
+    @extend .login_button;
+    @extend .bounceIn;
+    @extend .animated;
+    display: table-row;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .login_button_waiting > div{
+
+    display: table-cell;
+
+  }
+  .login_button_waiting > div:first-child{
+    padding-top: 8px;
+    padding-right: 5px;
+  }
+
+
   footer{
     margin-top: 30px;
   }
@@ -79,6 +102,62 @@ body{
 
 }
 
+.spinner {
 
+  margin-left: 5px;
+  height: 30px;
+  text-align: center;
+
+  .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+
+  .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+
+  .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+
+  .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+
+}
+
+.spinner > div {
+  background-color: #ffffff;
+  opacity: 0.7;
+  height: 100%;
+  width: 6px;
+  margin-left: 2px;
+  display: inline-block;
+
+
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0); opacity: 1; }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+       transform: scaleY(1.0);
+        opacity: 1;
+       -webkit-transform: scaleY(1.0);
+     }
+}
 
 

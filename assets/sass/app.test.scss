@@ -1,0 +1,41 @@
+ @import "app";
+
+ div.test {
+   height: 100%;
+   margin: 0px;
+   padding: 0px;
+
+ }
+
+ div.test_wrapper{
+   height: 80%;
+   margin: 0px;
+   padding: 0px;
+ }
+
+ footer.test_footer{
+   height: 20%;
+   margin: 0px;
+   padding: 10px;
+   background-color: #ffffff;
+   overflow: scroll;
+   h1{
+     text-align: center;
+     font-size: 25px;
+   }
+   p{
+     text-align: center;
+   }
+   a.state_selector{
+     @extend .btn;
+     @extend .btn-primary;
+     margin-left: 10px;
+   }
+   a.state_printer{
+     @extend .btn;
+     @extend .btn-danger;
+     margin-left: 10px;
+   }
+
+
+ }

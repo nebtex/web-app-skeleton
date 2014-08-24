@@ -1,7 +1,6 @@
-root = exports ? this
 EventEmitter = require("events").EventEmitter
 mercury = require("mercury")
-root.emmiter = new EventEmitter()
+emmiter = new EventEmitter()
 render = require("./views/main").render
 State = require("./models/state")
 state = new State()

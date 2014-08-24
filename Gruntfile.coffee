@@ -18,14 +18,14 @@ module.exports = (grunt) ->
           style: "expanded"
 
         files: # Dictionary of files
-          "public/css/app.css": "assets/sass/app.scss" # 'destination': 'source'
+          "public_test/css/app.css": "assets/sass/app.test.scss" # 'destination': 'source'
 
 
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask "build:dev:app:js", ()->
+  grunt.registerTask "build:dev:js", ()->
 
-    js_dir = path.resolve(__dirname, 'public/js')
+    js_dir = path.resolve(__dirname, 'public_test/js')
 
     # Tell grunt this task is asynchronous.
     done = @async()
@@ -37,7 +37,7 @@ module.exports = (grunt) ->
     mkdirp js_dir, (e) ->
       if e
         grunt.log.writeln(e)
-      file = path.resolve(__dirname, 'src/app.coffee');
+      file = path.resolve(__dirname, 'tests/views/app.test.coffee');
       b = browserify([file], {debug: true, extensions:".coffee"})
       b.transform("coffeeify")
       .bundle()
@@ -46,5 +46,7 @@ module.exports = (grunt) ->
 
 
   # Default task(s).
-  grunt.registerTask "build:dev:js", ["build:dev:app:js"]
+  grunt.registerTask "build:dev:css", ["sass:dev"]
+
+  grunt.registerTask "build:dev", ["build:dev:js", "build:dev:css"]
   return
