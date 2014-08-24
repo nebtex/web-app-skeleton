@@ -1,6 +1,7 @@
 @import "vendor/animate";
 @import "vendor/bootstrap";
-
+@import "vendor/font-awesome";
+@import "animations";
 
 html,body, .main-app, .app-view{
   height: 100%;
@@ -46,9 +47,33 @@ body{
   background: url("../img/pattern-eip0.png");
 }
 
+.global-notification{
+  @extend .slideDown;
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fde073;
+  text-align: center;
+  line-height: 2.5;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 5px black;
+  -moz-box-shadow:    0 0 5px black;
+  box-shadow:         0 0 5px black;
+}
+.global-notification.notification-error{
+  color: #ffffff;
+  background-color: #e74c3c!important;
+  i {
+    @extend .fa;
+    @extend .fa-bug;
+    margin-right: 10px;
+  }
+
+
+}
 .login-modal{
-  @extend .bounceInDown;
-  @extend .animated;
   display: block;
   background-color: white;
   width: 400px;
@@ -84,8 +109,8 @@ body{
 
   }
   .login_button_waiting > div:first-child{
-    padding-top: 8px;
     padding-right: 5px;
+    vertical-align: middle;
   }
 
 
@@ -100,6 +125,31 @@ body{
     width: 150px;
   }
 
+}
+.login-modal.login-entrance{
+  @extend .bounceInDown;
+  @extend .animated;
+}
+
+.login-modal.login-error{
+  @extend .shake;
+  @extend .animated;
+  height: 310px!important;
+  .error{
+    @extend .alert;
+    @extend .alert-danger;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  footer{
+    margin-top: 10px!important;
+  }
+  .login_button {
+
+    margin-top: 0px!important;
+
+
+  }
 }
 
 .spinner {

@@ -45,10 +45,23 @@ class LoginModalView
     h "footer", [login_button, h("div.clear-fix")]
 
   error:->
-    return  if @app.login_error? and @app.login_error!="" then h "span.error", [@app.login_error] else ""
+    return  if @app.login_error? and @app.login_error!="" then h "div.error", [@app.login_error] else ""
 
   render:->
-    h "section.login-modal", [@header(), @body(), @footer()]
+    clases = ["login-modal"]
+
+    if @app.login_error? and @app.login_error!=""
+      clases.push("login-error")
+    else if @app.trying_to_login == true
+      #do nothing
+    else if  @app.net_error? and @app.net_error!=""
+      #do nothing
+    else
+      clases.push("login-entrance")
+
+    h "section."+clases.join("."), [@header(), @body(), @footer()]
+
+
 
 
 module.exports = LoginModalView

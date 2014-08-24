@@ -1,0 +1,27 @@
+@mixin animation-name($name) {
+  -webkit-animation-name: $name;
+  -moz-animation-name: $name;
+  animation-name: $name;
+}
+
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  animation-duration: $duration;
+}
+
+
+.slideDown {
+  @include animation-name(slideDown);
+  @include animation-duration(1s);
+
+}
+
+@-webkit-keyframes slideDown {
+  0% { -webkit-transform: translateY(-50px); }
+  100% { -webkit-transform: translateY(0px); }
+}
+@-moz-keyframes slideDown {
+  0%{ -moz-transform: translateY(-50px); }
+  100% { -moz-transform: translateY(0px); }
+}
