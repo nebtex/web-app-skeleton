@@ -1,0 +1,155 @@
+.login-modal{
+  display: inline-block;
+  vertical-align: middle;
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  height: 300px;
+  margin: auto;
+
+  header{
+    text-align: left;
+  }
+
+  h1.app-name{
+
+    @extend h3;
+    text-align: center;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .login_button {
+    @extend .btn;
+    @extend .btn-primary;
+    float: right;
+    margin-top: 10px;
+  }
+
+  .login_button_waiting{
+    @extend .login_button;
+    @extend .bounceIn;
+    @extend .animated;
+    display: table-row;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .login_button_waiting > div{
+    display: table-cell;
+  }
+
+  .login_button_waiting > div:first-child{
+    padding-right: 5px;
+    vertical-align: middle;
+  }
+
+  footer{
+    margin-top: 30px;
+  }
+
+  input.username {
+    @extend .form-control;
+  }
+
+  img.app-logo {
+    width: 150px;
+  }
+
+  /* Smartphones (portrait and landscape) */
+  @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)  {
+    height: 36em;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    img.app-logo {
+      width: 350px;
+    }
+    header{
+      text-align: center;
+    }
+    header *{
+      font-size: 5em!important;
+    }
+    .login_button {
+      float: none;
+      font-size: 3em;
+      width: 100%;
+      font-weight: bold;
+      height: 2.5em;
+      padding: 0.5em;
+      border-width: 0.1em;
+    }
+    input.username {
+      font-size: 3em;
+      height: 2.5em;
+    }
+
+    .login_button_waiting{
+      display: block;
+      height: 2.5em;
+
+
+    }
+    .login_button_waiting > div:first-child{
+
+      display: none;
+
+    }
+    .spinner{
+      margin: auto;
+      width: 3.5em;
+      height: 1.5em;
+      display: block!important;
+    }
+    .spinner > div {
+      width: 0.5em;
+      margin-left: 0.15em;
+
+
+
+    }
+
+
+  }
+
+}
+
+.login-modal.login-entrance{
+  @extend .bounceInDown;
+  @extend .animated;
+}
+
+.login-modal.login-error{
+  @extend .shake;
+  @extend .animated;
+  height: 310px!important;
+  .error{
+    @extend .alert;
+    @extend .alert-danger;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  footer{
+    margin-top: 10px!important;
+  }
+  .login_button {
+
+    margin-top: 0px!important;
+  }
+  /* Smartphones (portrait and landscape) */
+  @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)  {
+    height: 42em!important;
+    .error{
+      font-size: 3em;
+      height: 2.5em;
+    }
+  }
+
+}
