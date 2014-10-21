@@ -21,10 +21,7 @@ class LoginModalView
         value: @app.$current_user.name
         disabled: "disabled"
     else
-      if @app.$current_user? and @app.$current_user.name?
-        value = @app.$current_user.name
-      else
-        value = ""
+      value = @app.$current_user?.name?  or ""
       properties =
         placeholder: "Enter your username ..."
         value:value

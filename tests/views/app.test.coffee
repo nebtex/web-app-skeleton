@@ -8,7 +8,7 @@ state = new State()
 state_cases = require ("./../state_cases/all")
 h = mercury.h
 
-default_state = "Login view:0"
+default_state = "Channel bar tests:0"
 #define default state
 state.app_state_path = default_state
 

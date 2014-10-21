@@ -1,7 +1,7 @@
 h = require("mercury").h
 
 SingleModalLayout = class
-  constructor:(state)->
+  constructor:(@state)->
     date = new Date()
     current_year = date.getFullYear()
     @footer  = h "footer", [h("div.cell", ["Copyright (c) #{current_year} Nebular Vortex"])]
